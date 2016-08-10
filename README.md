@@ -1,5 +1,5 @@
 
-## Understanding full-text search with Postgres
+## Understand full-text search with Postgres
 
 #### Piotr Lewandowski, [@constjs](http://twitter.com/constjs)
 
@@ -20,6 +20,7 @@
 * helpless for grammar
 * lots of pitfalls even for simple languages like HTML
 * Complicated to maintain, e.g.
+
     ```
     ^(?=[A-Z0-9][A-Z0-9@._%+-]{5,253}$)[A-Z0-9._%+-]{1,64}@(?:(?=[A-Z0-9-]{1,63}\.)[A-Z0-9]+(?:-[A-Z0-9]+)*\.){1,8}[A-Z]{2,63}$
     ```

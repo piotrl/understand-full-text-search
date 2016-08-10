@@ -20,16 +20,15 @@ SELECT ts_rank(
 
 SELECT setweight(to_tsvector(a.title), 'A') ||
        setweight(to_tsvector(a.content), 'B') ||
-       setweight(to_tsvector(c.name), 'C')
+       setweight(to_tsvector(coalesce(c.name, '')), 'C')
 FROM article a
-  JOIN article_category ac ON ac.articleid = a.id
-  JOIN category c ON c.id = ac.categoryid;
+  LEFT JOIN article_category ac ON ac.articleid = a.id
+  LEFT JOIN category c ON c.id = ac.categoryid;
 
 -- endregion
 
 -- region Ranking of relevance
 
-EXPLAIN ANALYSE
 SELECT
   ts_rank(search.document, search_query) AS relevance,
   search.category,
@@ -43,8 +42,8 @@ FROM (
          setweight(to_tsvector(c.name), 'C')
                  AS document
        FROM article a
-         JOIN article_category ac ON ac.articleid = a.id
-         JOIN category c ON c.id = ac.categoryid
+         LEFT JOIN article_category ac ON ac.articleid = a.id
+         LEFT JOIN category c ON c.id = ac.categoryid
      ) search,
       plainto_tsquery(:query) search_query
 WHERE search.document @@ search_query

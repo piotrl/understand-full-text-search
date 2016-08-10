@@ -80,8 +80,8 @@ FROM (
          to_tsvector(coalesce(c.name, ''))
            AS document
        FROM article a
-         JOIN article_category ac ON ac.articleid = a.id
-         JOIN category c ON c.id = ac.categoryid
+         LEFT JOIN article_category ac ON ac.articleid = a.id
+         LEFT JOIN category c ON c.id = ac.categoryid
      ) search
 WHERE search.document @@ plainto_tsquery('twitter');
 
