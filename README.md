@@ -5,31 +5,22 @@
 
 ----
 
-#### Presentation covers
-
-* Stemming
-* Querying
-* Ranking
-* Improving search results
-* Performance tips
-
-
-#### Why not RegEx?
+#### Why just not RegEx?
 
 * Regex is good to find only simple, finite languages
-* helpless for grammar
-* lots of pitfalls even for simple languages like HTML
+* Helpless for grammar
+* Lots of pitfalls even for simple languages like HTML
 * Complicated to maintain, e.g.
 
     ```
     ^(?=[A-Z0-9][A-Z0-9@._%+-]{5,253}$)[A-Z0-9._%+-]{1,64}@(?:(?=[A-Z0-9-]{1,63}\.)[A-Z0-9]+(?:-[A-Z0-9]+)*\.){1,8}[A-Z]{2,63}$
     ```
 
-#### Why full-text search? 
+#### When full-text search? 
 
 * Search by content created by people (not programmers)
 * Divide more and less important fragments of document
-* Searching email database dump from WikiLeaks
+* Searching database dumps from WikiLeaks
 
 
 #### Why Postgres?

@@ -32,9 +32,9 @@ SELECT to_tsvector('ran != run or running');
 -- region b)   Parsing special tokens
 
 
-SELECT to_tsvector('Sponsored by: https://goyello.com');
+SELECT to_tsvector('Sponsored by: https://goyello.com/test');
 
-SELECT to_tsvector('<a href="http://piotrl.net/">HTML</a> content');
+SELECT to_tsvector('<a href="#">HTML</a> content');
 
 SELECT *
 FROM ts_debug('<strong>HTML 5.1</strong>');
@@ -67,15 +67,14 @@ FROM pg_ts_config;
 -- endregion
 
 
--- regio Building document
+-- region Building document
 
 
 SELECT to_tsvector(a.title) ||
        to_tsvector(a.content) ||
        to_tsvector(coalesce(c.name, '')) AS document
 FROM article a
-  LEFT JOIN article_category ac ON ac.articleid = a.id
-  LEFT JOIN category c ON c.id = ac.categoryid;
+  LEFT JOIN category c ON c.id = a.categoryid;
 
 
--- endregio
+-- endregion

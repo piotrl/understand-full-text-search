@@ -11,8 +11,7 @@ FROM (SELECT
         a.id,
         c.name AS category
       FROM article a
-        LEFT JOIN article_category ac ON ac.articleid = a.id
-        LEFT JOIN category c ON c.id = ac.categoryid
+        LEFT JOIN category c ON c.id = a.categoryid
       GROUP BY a.id, c.name) search_data
 WHERE article.id = search_data.id;
 
