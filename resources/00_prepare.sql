@@ -9,7 +9,9 @@ DROP TEXT SEARCH CONFIGURATION IF EXISTS pl;
 DROP TABLE IF EXISTS category CASCADE;
 DROP TABLE IF EXISTS article CASCADE;
 
+DROP INDEX IF EXISTS article_searchcache_index;
 
+DROP MATERIALIZED VIEW IF EXISTS misspell_index;
 -- endregion
 
 
@@ -62,7 +64,7 @@ VALUES (2, 'Moderate twitter comments',
 -- endregion
 
 
--- region update search cache
+-- region Update search cache
 
 
 UPDATE article

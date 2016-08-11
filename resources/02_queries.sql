@@ -3,9 +3,10 @@
 
 SELECT to_tsquery('winner & EURO');
 SELECT to_tsquery('winner & !RIO');
-SELECT to_tsquery('(gas | diesel) & american');
+SELECT to_tsquery('(gas | diesel) & bikes');
 
-SELECT plainto_tsquery('cars in gas or diesel');
+SELECT to_tsquery('POLAND CAN''T INTO SPACE');
+SELECT plainto_tsquery('POLAND CAN''T INTO SPACE');
 
 
 -- endregion
@@ -20,14 +21,8 @@ SELECT to_tsvector('You are the winner!') @@ plainto_tsquery('who is the winner?
 
 SELECT to_tsvector('You are the winner!') @@ plainto_tsquery('Looking for a winner...');
 
-
--- endregion
-
-
--- region  plainto_tsquery once again
-
-
 SELECT plainto_tsquery('who is the winner?');
+
 SELECT plainto_tsquery('Looking for winner');
 
 
@@ -37,9 +32,8 @@ SELECT plainto_tsquery('Looking for winner');
 -- region Searching for real
 
 
-SELECT *
-FROM (
-       SELECT
+SELECT search.content
+FROM (SELECT
          a.*,
          to_tsvector(a.title) || to_tsvector(a.content) AS document
        FROM article a
@@ -60,9 +54,8 @@ WHERE MATCH(title, content)
 AGAINST ('query' IN NATURAL LANGUAGE MODE );
 
 
--- simpler query
 -- no simple way for weights and ranking
--- from MySQL 5.6 supports InnoDB
+-- added support for InnoDB tables in MySQL 5.6
 
 
 -- endregion
@@ -70,19 +63,22 @@ AGAINST ('query' IN NATURAL LANGUAGE MODE );
 
 -- region Multi table search
 
-SELECT *
+SELECT
+  search.category,
+  search.title,
+  search.content
 FROM (
        SELECT
-         c.name,
          a.*,
+         c.name AS category,
          to_tsvector(coalesce(a.title, '')) ||
          to_tsvector(coalesce(a.content, '')) ||
          to_tsvector(coalesce(c.name, ''))
-           AS document
+                AS document
        FROM article a
          LEFT JOIN category c ON c.id = a.categoryid
      ) search
-WHERE search.document @@ plainto_tsquery('twitter');
+WHERE search.document @@ plainto_tsquery('witcher');
 
 -- Remember to add coalesce() for strings
 -- Concatenate tsvectors instead of strings

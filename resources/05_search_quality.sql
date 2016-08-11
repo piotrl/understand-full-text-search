@@ -1,22 +1,5 @@
 
 
--- region Headline
-
-
-SELECT
-  ts_rank(a.searchcache, search_query) AS relevance,
-  a.title,
-  ts_headline(a.title, search_query),
-  ts_headline(a.content, search_query)
-FROM article a,
-      plainto_tsquery(unaccent(:query)) search_query
-WHERE a.searchcache @@ search_query
-ORDER BY relevance DESC;
-
-
--- endregion
-
-
 -- region Language extensions
 -- Note: requires admin privileges
 
@@ -26,6 +9,7 @@ CREATE EXTENSION pg_trgm;
 
 
 -- endregion
+
 
 -- region unaccent() remove national characters
 
@@ -63,31 +47,36 @@ SELECT similarity('Something', 'everything');
 
 
 -- List of misspelled words
+
+
 CREATE MATERIALIZED VIEW misspell_index AS
   SELECT word
   FROM ts_stat(
       'SELECT ' ||
+      ' to_tsvector(''simple'', article.title) || ' ||
       ' to_tsvector(''simple'', article.content) ' ||
       'FROM article'
   );
 
 -- REFRESH MATERIALIZED VIEW misspell_index;
--- DROP MATERIALIZED VIEW IF EXISTS misspell_index;
+
+-- endregion
 
 
--- Query
+-- region Typo hints
 
-
-SELECT plainto_tsquery('zoveel and surprise');
 
 -- TODO: Make possible to searching by multiple words
-SELECT word
-FROM misspell_index
-WHERE similarity(word, 'wintr') BETWEEN 0.5 AND 0.99
-LIMIT 1;
+SELECT
+  word,
+  similarity
+FROM misspell_index,
+      similarity(word, 'twiter') AS similarity
+WHERE similarity > 0.5
+ORDER BY similarity DESC;
 
-SELECT similarity('winter', 'wintr');
-SELECT similarity('zoveel', 'zoveel and surprise');
+SELECT similarity('twitter', 'twiter');
+SELECT similarity('winter', 'winer');
 
 
 -- endregion
