@@ -1,11 +1,11 @@
+
+
 -- region Simple queries
 
 
 SELECT to_tsquery('winner & EURO');
-SELECT to_tsquery('winner & !RIO');
 SELECT to_tsquery('(gas | diesel) & bikes');
 
-SELECT to_tsquery('POLAND CAN''T INTO SPACE');
 SELECT plainto_tsquery('POLAND CAN''T INTO SPACE');
 
 
@@ -15,11 +15,11 @@ SELECT plainto_tsquery('POLAND CAN''T INTO SPACE');
 -- region Searching
 
 
-SELECT to_tsvector('Running in the dark!') @@ plainto_tsquery('run');
+SELECT to_tsvector('Running in the dark!')  @@ plainto_tsquery('run');
 
-SELECT to_tsvector('You are the winner!') @@ plainto_tsquery('who is the winner?');
+SELECT to_tsvector('You are the winner!')   @@ plainto_tsquery('who is the winner?');
 
-SELECT to_tsvector('You are the winner!') @@ plainto_tsquery('Looking for a winner...');
+SELECT to_tsvector('You are the winner!')   @@ plainto_tsquery('Looking for a winner...');
 
 SELECT plainto_tsquery('who is the winner?');
 
@@ -71,8 +71,8 @@ FROM (
        SELECT
          a.*,
          c.name AS category,
-         to_tsvector(coalesce(a.title, '')) ||
-         to_tsvector(coalesce(a.content, '')) ||
+         to_tsvector(a.title) ||
+         to_tsvector(a.content) ||
          to_tsvector(coalesce(c.name, ''))
                 AS document
        FROM article a
@@ -80,7 +80,7 @@ FROM (
      ) search
 WHERE search.document @@ plainto_tsquery('witcher');
 
--- Remember to add coalesce() for strings
+-- Remember to add coalesce() for strings that might be nulls
 -- Concatenate tsvectors instead of strings
 
 

@@ -5,13 +5,8 @@
 
 SELECT ts_rank(
     to_tsvector('Example document'),
-    to_tsquery('Example & document')
+    plainto_tsquery('Example document')
 ); -- 0.099
-
-SELECT ts_rank(
-    to_tsvector('Example document'),
-    to_tsquery('Example | document')
-); -- 0.060
 
 
 -- endregion
@@ -21,8 +16,8 @@ SELECT ts_rank(
 
 
 SELECT setweight(to_tsvector(a.title), 'A') ||
-       setweight(to_tsvector(a.content), 'B') ||
-       setweight(to_tsvector(coalesce(c.name, '')), 'C')
+       setweight(to_tsvector(a.content), 'C') ||
+       setweight(to_tsvector(coalesce(c.name, '')), 'D')
 FROM article a
   LEFT JOIN category c ON c.id = a.categoryid;
 
@@ -39,7 +34,7 @@ SELECT
   c.name AS category
 FROM article a
   LEFT JOIN category c ON c.id = a.categoryid
-  , plainto_tsquery(:query) searchquery
+  , plainto_tsquery('twitter') searchquery
 WHERE a.searchcache @@ searchquery
 ORDER BY relevance DESC;
 
@@ -55,7 +50,7 @@ SELECT
   ts_headline(a.title, searchquery),
   ts_headline(a.content, searchquery)
 FROM article a,
-      plainto_tsquery(:query) searchquery
+      plainto_tsquery('twitter') searchquery
 WHERE a.searchcache @@ searchquery
 ORDER BY relevance DESC;
 

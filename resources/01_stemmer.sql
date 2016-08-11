@@ -1,5 +1,5 @@
 /**
- * How search works?
+ * How does search works?
  *
  * Full text search is set of techniques
  */
@@ -16,23 +16,18 @@ SELECT to_tsvector('impossible, impossibility, imposter');
 -- endregion
 
 
--- region Tokenization
+-- region Under the hood
 
 
--- region a)  Suffix-stripping + Eliminate casing
+-- a)  Suffix-stripping + Eliminate casing
 
-
-SELECT to_tsvector('SCREAMING on interns'); -- ... is normal in Japan
 
 SELECT to_tsvector('ran != run or running');
 
--- endregion
+-- b)  Parsing special tokens
 
 
--- region b)   Parsing special tokens
-
-
-SELECT to_tsvector('Sponsored by: https://goyello.com/test');
+SELECT to_tsvector('Sponsored by: https://goyello.com');
 
 SELECT to_tsvector('<a href="#">HTML</a> content');
 
@@ -43,25 +38,11 @@ FROM ts_debug('<strong>HTML 5.1</strong>');
 -- endregion
 
 
--- endregion
-
-
 -- region Difference between languages
 
 
 SELECT to_tsvector('english', 'It''s not a bug - it''s a feature.');
-SELECT to_tsvector('dutch', 'It''s not a bug - it''s a feature.');
-SELECT to_tsvector('simple', 'It''s not a bug - it''s a feature.');
-
-
--- endregion
-
-
--- region Supported languages
-
-
-SELECT cfgname
-FROM pg_ts_config;
+SELECT to_tsvector('dutch', 'Het is bug - niet feature.');
 
 
 -- endregion

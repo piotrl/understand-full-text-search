@@ -2,14 +2,14 @@
 
 -- region Previous search, but simpler
 
-
+EXPLAIN ANALYSE
 SELECT
   c.name,
   a.title,
   a.content
 FROM article a
   LEFT JOIN category c ON c.id = a.categoryid
-WHERE a.searchcache @@ plainto_tsquery(:query);
+WHERE a.searchcache @@ plainto_tsquery('witcher');
 
 
 -- endregion
@@ -29,6 +29,7 @@ INSERT INTO article (title, content)
 
 
 -- endregion
+
 
 -- region search cache update
 
@@ -50,12 +51,12 @@ WHERE article.id = search_data.id;
 
 -- region Index
 
-
 CREATE INDEX article_searchcache_index
   ON article USING GIN (searchcache);
 
 
 -- endregion
+
 
 -- region results
 

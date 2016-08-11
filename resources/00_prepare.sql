@@ -4,7 +4,7 @@
 
 
 DROP EXTENSION IF EXISTS unaccent;
-DROP TEXT SEARCH CONFIGURATION IF EXISTS pl;
+DROP EXTENSION IF EXISTS pg_trgm;
 
 DROP TABLE IF EXISTS category CASCADE;
 DROP TABLE IF EXISTS article CASCADE;
@@ -14,6 +14,15 @@ DROP INDEX IF EXISTS article_searchcache_index;
 DROP MATERIALIZED VIEW IF EXISTS misspell_index;
 -- endregion
 
+-- region Language extensions
+-- Note: requires admin privileges
+
+
+CREATE EXTENSION unaccent;
+CREATE EXTENSION pg_trgm;
+
+
+-- endregion
 
 -- region Create schema
 

@@ -1,16 +1,5 @@
 
 
--- region Language extensions
--- Note: requires admin privileges
-
-
-CREATE EXTENSION unaccent;
-CREATE EXTENSION pg_trgm;
-
-
--- endregion
-
-
 -- region unaccent() remove national characters
 
 
@@ -18,7 +7,7 @@ SELECT unaccent('bądź łaskawy');
 
 SELECT unaccent('With wide support');
 
-SELECT unaccent('我要打破这个');
+SELECT unaccent('我想挣脱束缚');
 
 
 -- endregion
