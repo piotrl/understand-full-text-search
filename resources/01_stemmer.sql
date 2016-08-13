@@ -24,6 +24,7 @@ SELECT to_tsvector('impossible, impossibility, imposter');
 
 SELECT to_tsvector('ran != run or running');
 
+
 -- b)  Parsing special tokens
 
 
@@ -43,6 +44,17 @@ FROM ts_debug('<strong>HTML 5.1</strong>');
 
 SELECT to_tsvector('english', 'It''s not a bug - it''s a feature.');
 SELECT to_tsvector('dutch', 'Het is bug - niet feature.');
+SELECT to_tsvector('simple', 'It''s not a bug - it''s a feature.');
+
+
+-- endregion
+
+
+-- region Supported languages
+
+
+SELECT cfgname
+FROM pg_ts_config;
 
 
 -- endregion

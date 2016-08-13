@@ -25,7 +25,7 @@ INSERT INTO article (title, content)
   SELECT
     'long article #' || generate_series,
     'Stuur het Klantcontactcentrum twitter een e-mail of meld het incident per telefoon. Indien het incident per email naar vragen@stipter wordt verzonden verzoeken wij u zoveel mogelijk informatie te vermelden. Informatie over de browser en de processtap in de applicatie zijn gewenst. Stuur het Klantcontactcentrum een e-mail of meld het incident per telefoon. Indien het incident per email naar vragen@stipter wordt verzonden verzoeken wij u zoveel mogelijk informatie te vermelden. Informatie over de browser en de processtap in de applicatie zijn gewenst. Stuur het Klantcontactcentrum een e-mail of meld het incident per telefoon. Indien het incident per email naar vragen@stipter wordt verzonden verzoeken wij u zoveel mogelijk informatie te vermelden. Informatie over de browser en de processtap in de applicatie zijn gewenst. Stuur het Klantcontactcentrum een e-mail of meld het incident per telefoon. Indien het incident per email naar vragen@stipter wordt verzonden verzoeken wij u zoveel mogelijk informatie te vermelden. Informatie over de browser en de processtap in de applicatie zijn gewenst.'
-  FROM generate_series(1, 10000);
+  FROM generate_series(1, 20000);
 
 
 -- endregion

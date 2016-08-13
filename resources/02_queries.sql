@@ -4,6 +4,7 @@
 
 
 SELECT to_tsquery('winner & EURO');
+SELECT to_tsquery('winner & !RIO');
 SELECT to_tsquery('(gas | diesel) & bikes');
 
 SELECT plainto_tsquery('POLAND CAN''T INTO SPACE');

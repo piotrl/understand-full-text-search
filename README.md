@@ -5,6 +5,14 @@
 
 ----
 
+#### Table of content
+
+* [Preparation](./resources/00_prepare.sql)
+* [Stemming. Building documents](./resources/01_stemmer.sql)
+* [Searching. Building queries](./resources/02_queries.sql)
+* [Performance](./resources/03_perfo.sql)
+* [Setting weight and ranking](./resources/04_rank.sql)
+* [Improving search quality](./resources/05_search_quality.sql)
 
 #### When full-text search? 
 
