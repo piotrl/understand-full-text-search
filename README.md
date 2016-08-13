@@ -7,12 +7,13 @@
 
 #### Table of content
 
-* [Preparation](./resources/00_prepare.sql)
-* [Stemming. Building documents](./resources/01_stemmer.sql)
-* [Searching. Building queries](./resources/02_queries.sql)
-* [Performance](./resources/03_perfo.sql)
+* [DB schema preparation](./resources/00_prepare.sql)
+* [Stemmer — Building documents](./resources/01_stemmer.sql)
+* [Search — Building queries](./resources/02_queries.sql)
+* [Performance practises](./resources/03_perfo.sql)
 * [Setting weight and ranking](./resources/04_rank.sql)
-* [Improving search quality](./resources/05_search_quality.sql)
+* [Improve search quality](./resources/05_search_quality.sql)
+* [Further reading](./FURTHER_READING.md)
 
 #### When full-text search? 
 
@@ -23,7 +24,7 @@
 
 #### Why just not RegEx?
 
-* Regex is good to find only simple, finite languages
+* Regexp is good to find only simple, finite languages
 * Helpless for grammar
 * Slow 
 * Lots of pitfalls even for simple languages like HTML
@@ -41,6 +42,3 @@
 * Maybe you already have it
     * Low entry point
     * If your technology stack is already over-engineered
-
-
-#### [Further reading](./FURTHER_READING.md)
