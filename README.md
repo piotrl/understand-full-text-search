@@ -24,9 +24,9 @@
 
 #### Why just not RegEx?
 
-* Regexp is good to find only simple, finite languages
+* RegEx is good to find only simple, finite languages
 * Helpless for grammar
-* Slow 
+* Slow <sub>(Can be improved with [Trigram Indexes](https://about.gitlab.com/2016/03/18/fast-search-using-postgresql-trigram-indexes/))</sub>
 * Lots of pitfalls even for simple languages like HTML
 * Complicated to maintain, e.g.
 
