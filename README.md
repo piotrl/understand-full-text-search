@@ -1,6 +1,7 @@
 
 ## Understand full-text search with Postgres
 
+![forthebadge](http://forthebadge.com/images/badges/reading-6th-grade-level.svg)
 #### Piotr Lewandowski, [@constjs](http://twitter.com/constjs)
 
 ----
