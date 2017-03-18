@@ -8,13 +8,13 @@
 
 #### Table of content
 
-* [DB schema preparation](./resources/00_prepare.sql)
-* [Stemmer — Building documents](./resources/01_stemmer.sql)
-* [Search — Building queries](./resources/02_queries.sql)
-* [Performance practises](./resources/03_perfo.sql)
-* [Setting weight and ranking](./resources/04_rank.sql)
-* [Improve search quality](./resources/05_search_quality.sql)
-* [Further reading](./FURTHER_READING.md)
+[Create demo DB tables](./resources/00_prepare.sql)
+1. [Stemmer — Building documents](./resources/01_stemmer.sql)
+1. [Search — Building queries](./resources/02_queries.sql)
+1. [Performance practises](./resources/03_perfo.sql)
+1. [Setting weight and ranking](./resources/04_rank.sql)
+1. [Improve search quality](./resources/05_search_quality.sql)
+1. [Further reading](./FURTHER_READING.md)
 
 #### When full-text search? 
 
