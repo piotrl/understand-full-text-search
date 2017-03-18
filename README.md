@@ -8,7 +8,7 @@
 
 #### Table of content
 
-[Create demo DB tables](./resources/00_prepare.sql)
+0. [Create demo DB tables](./resources/00_prepare.sql)
 1. [Stemmer — Building documents](./resources/01_stemmer.sql)
 1. [Search — Building queries](./resources/02_queries.sql)
 1. [Performance practises](./resources/03_perfo.sql)
